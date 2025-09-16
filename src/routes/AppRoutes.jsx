@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router';
-import HomePage from '../pages/Home';
+import Home from '../pages/Home';
+import MainLayout from '../Layouts/MainLayout';
 
 const AppRoutes = () => {
     return (
         <Route>
             <Route element={<MainLayout />}>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
             </Route>

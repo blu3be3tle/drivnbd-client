@@ -15,7 +15,7 @@ const categories = [
     { name: 'Womenswear', href: '#', image: 'https://placehold.co/600x400?text=Women' },
 ];
 
-const HomePage = () => {
+const Home = () => {
     return (
         <div>
             {/* 1. Hero */}
@@ -121,5 +121,5 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default Home;
 
