@@ -1,6 +1,6 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router';
 import { useAuth } from '../contexts/useAuth.js';
-import { useCart } from '../contexts/CartContext.jsx';
+import { useCart } from '../contexts/useCart.js';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
