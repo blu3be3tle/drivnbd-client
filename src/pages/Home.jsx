@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 // Placeholder data - replace with API calls
 const featuredProducts = [
