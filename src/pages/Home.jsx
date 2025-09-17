@@ -19,15 +19,25 @@ const Home = () => {
     return (
         <div>
             {/* 1. Hero */}
-            <section className="bg-gray-900 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Summer Collection is Here</h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300">Discover the latest trends and refresh your wardrobe with our stunning new arrivals.</p>
-                    <div className="mt-8">
-                        <Link to="/products" className="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-700 transition">Shop Now</Link>
+            <div
+                className="hero min-h-screen"
+                style={{
+                    backgroundImage:
+                        "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+                }}
+            >
+                <div className="hero-overlay"></div>
+                <div className="hero-content text-neutral-content text-center">
+                    <div className="max-w-md">
+                        <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                        <p className="mb-5">
+                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                            quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        </p>
+                        <button className="btn btn-primary">Get Started</button>
                     </div>
                 </div>
-            </section>
+            </div>
 
             {/* 2. Featured Products */}
             <section className="py-16 bg-gray-50">
