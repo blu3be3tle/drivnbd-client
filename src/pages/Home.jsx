@@ -43,18 +43,22 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-extrabold text-gray-900 text-center">Featured Products</h2>
                     <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
                         {featuredProducts.map(product => (
                             <div key={product.id} className="group relative border rounded-lg p-4 shadow-sm hover:shadow-xl transition-shadow duration-300">
+
                                 <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
                                     <img src={product.image} alt={product.name} className="w-full h-full object-center object-cover" />
                                 </div>
+
                                 <div className="mt-4 flex justify-between">
                                     <div>
                                         <h3 className="text-sm text-gray-700">
                                             <Link to={`/products/${product.id}`}><span aria-hidden="true" className="absolute inset-0" />{product.name}</Link>
                                         </h3>
                                     </div>
-                                    <p className="text-sm font-medium text-gray-900">${product.price}</p>
+
+                                    <p className="text-sm font-medium text-gray-900">৳{product.price}</p>
                                 </div>
                             </div>
                         ))}
@@ -81,7 +85,7 @@ const Home = () => {
             </section>
 
             {/* 4. Why Choose Us */}
-            <section className="bg-indigo-700 text-white">
+            <section className="bg-gray-900 text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                     <h2 className="text-3xl font-extrabold text-center">Why DrivnBD?</h2>
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
