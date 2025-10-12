@@ -12,7 +12,7 @@ const featuredProducts = [
 const categories = [
     { name: 'New Arrivals', href: '#', image: 'https://placehold.co/600x400?text=New' },
     { name: 'Menswear', href: '#', image: 'https://placehold.co/600x400?text=Men' },
-    { name: 'Womenswear', href: '#', image: 'https://placehold.co/600x400?text=Women' },
+    { name: 'Babyssection', href: '#', image: 'https://placehold.co/600x400?text=Women' },
 ];
 
 const Home = () => {
