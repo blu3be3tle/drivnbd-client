@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
             </div>
             <div className="mt-4 flex justify-between">
                 <div>
-                    <h3 className="text-sm text-gray-700">
+                    <h3 className="text-sm font-bold text-gray-700">
                         <Link to={`/products/${product.id}`}>
                             <span aria-hidden="true" className="absolute inset-0" />
                             {product.name}
