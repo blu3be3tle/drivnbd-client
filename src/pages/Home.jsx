@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FeaturedProducts from '../components/Home/Featured/Featured';
 
-// Placeholder data - replace with API calls
-const featuredProducts = [
-    { id: 1, name: 'Classic White Tee', price: '25.00', image: 'https://placehold.co/400x500?text=Tee' },
-    { id: 2, name: 'Slim Fit Jeans', price: '75.00', image: 'https://placehold.co/400x500?text=Jeans' },
-    { id: 3, name: 'Urban Hoodie', price: '60.00', image: 'https://placehold.co/400x500?text=Hoodie' },
-    { id: 4, name: 'Leather Jacket', price: '150.00', image: 'https://placehold.co/400x500?text=Jacket' },
-];
 
 const categories = [
     { name: 'New Arrivals', href: '#', image: 'https://placehold.co/600x400?text=New' },
@@ -39,32 +33,7 @@ const Home = () => {
             </div>
 
             {/* 2. Featured Products */}
-            <section className="py-16 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-extrabold text-gray-900 text-center">Featured Products</h2>
-                    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                        {featuredProducts.map(product => (
-                            <div key={product.id} className="group relative border rounded-lg p-4 shadow-sm hover:shadow-xl transition-shadow duration-300">
-
-                                <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
-                                    <img src={product.image} alt={product.name} className="w-full h-full object-center object-cover" />
-                                </div>
-
-                                <div className="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 className="text-sm text-gray-700">
-                                            <Link to={`/products/${product.id}`}><span aria-hidden="true" className="absolute inset-0" />{product.name}</Link>
-                                        </h3>
-                                    </div>
-
-                                    <p className="text-sm font-medium text-gray-900">৳{product.price}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <FeaturedProducts />
 
             {/* 3. Categories */}
             <section className="py-16 bg-white">
