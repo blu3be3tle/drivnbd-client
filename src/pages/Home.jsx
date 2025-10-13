@@ -1,13 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router';
 import FeaturedProducts from '../components/Home/Featured/Featured';
+import Categories from '../components/Home/Categories/Categories';
 
-
-const categories = [
-    { name: 'New Arrivals', href: '#', image: 'https://placehold.co/600x400?text=New' },
-    { name: 'Menswear', href: '#', image: 'https://placehold.co/600x400?text=Men' },
-    { name: 'Babyssection', href: '#', image: 'https://placehold.co/600x400?text=Women' },
-];
 
 const Home = () => {
     return (
@@ -36,9 +29,10 @@ const Home = () => {
             <FeaturedProducts />
 
             {/* 3. Categories */}
-            <section className="py-16 bg-white">
+            {/* <section className="py-16 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-extrabold text-gray-900 text-center">Shop by Category</h2>
+
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
                         {categories.map(category => (
                             <div key={category.name} className="relative rounded-lg overflow-hidden h-80 group">
@@ -49,9 +43,12 @@ const Home = () => {
                                 <a href={category.href} className="absolute inset-0"></a>
                             </div>
                         ))}
+                        
                     </div>
                 </div>
-            </section>
+            </section> */}
+
+            <Categories />
 
             {/* 4. Why Choose Us */}
             <section className="bg-gray-900 text-white">
