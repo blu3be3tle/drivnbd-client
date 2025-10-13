@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 
 const useAuth = () => {
@@ -14,7 +14,7 @@ const useAuth = () => {
 
   useEffect(() => {
     if (authTokens) fetchUserProfile();
-  }, [authTokens, fetchUserProfile]);
+  }, [authTokens]);
 
   const handleAPIError = (
     error,
@@ -35,7 +35,7 @@ const useAuth = () => {
   };
 
   // Fetch user Profile
-  const fetchUserProfile = useCallback(async () => {
+  const fetchUserProfile = async () => {
     try {
       const response = await apiClient.get("/auth/users/me", {
         headers: { Authorization: `JWT ${authTokens?.access}` },
@@ -44,7 +44,7 @@ const useAuth = () => {
     } catch (error) {
       console.log("Error Fetching user", error);
     }
-  }, [authTokens]);
+  };
 
   // Update User Profile
   const updateUserProfile = async (data) => {

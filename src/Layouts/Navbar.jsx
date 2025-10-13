@@ -1,12 +1,14 @@
-import { Link, NavLink } from 'react-router';
-import { useAuth } from '../contexts/useAuth.js';
-import { useCart } from '../contexts/useCart.js';
+import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../hooks/useAuth.js';
+import useCart from '../hooks/useCart.js';
 
 const Navbar = () => {
-    const { user, logout } = useAuth();
-    const { cartItems } = useCart();
+    const { user, logout } = useAuth() ?? {};
+    const { cartItems = [] } = useCart() ?? {}; 
 
-    const cartItemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+    const cartItemCount = Array.isArray(cartItems)
+        ? cartItems.reduce((count, item) => count + (Number(item?.quantity) || 0), 0)
+        : 0;
 
     return (
         <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -27,7 +29,7 @@ const Navbar = () => {
                         <NavLink
                             to="/products"
                             className={({ isActive }) =>
-                                isActive ? "text-black" : "text-gray-600 hover:text-gray-800"   
+                                isActive ? "text-black" : "text-gray-600 hover:text-gray-800"
                             }
                         >
                             Products
