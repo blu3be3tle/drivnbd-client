@@ -25,29 +25,7 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* 2. Featured Products */}
             <FeaturedProducts />
-
-            {/* 3. Categories */}
-            {/* <section className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-extrabold text-gray-900 text-center">Shop by Category</h2>
-
-                    <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {categories.map(category => (
-                            <div key={category.name} className="relative rounded-lg overflow-hidden h-80 group">
-                                <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                                    <h3 className="text-white text-2xl font-bold">{category.name}</h3>
-                                </div>
-                                <a href={category.href} className="absolute inset-0"></a>
-                            </div>
-                        ))}
-                        
-                    </div>
-                </div>
-            </section> */}
-
             <Categories />
 
             {/* 4. Why Choose Us */}
