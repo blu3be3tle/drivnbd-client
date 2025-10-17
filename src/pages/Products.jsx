@@ -1,6 +1,6 @@
 import AllProducts from "../components/Shop/AllProducts";
 
-const Shop = () => {
+const Products = () => {
     return (
         <div>
             <AllProducts />
@@ -8,4 +8,4 @@ const Shop = () => {
     );
 };
 
-export default Shop;
+export default Products;
