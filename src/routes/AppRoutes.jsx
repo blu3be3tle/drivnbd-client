@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import PrivateRoute from './PrivateRoute';
 import ActivateAccount from '../pages/ActivateAccount';
+import ProductDetail from '../pages/ProductDetail';
 
 import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../pages/Profile";
@@ -17,10 +18,11 @@ const AppRoutes = () => {
         <Routes>
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-                <Route path="/products" element={<Products />} />
+                <Route path='login' element={<Login />} />
+                <Route path='register' element={<Register />} />
+                <Route path="products" element={<Products />} />
                 <Route path="activate/:uid/:token" element={<ActivateAccount />} />
+                <Route path="products/:productId" element={<ProductDetail />} />
             </Route>
 
             {/* Private Routes  */}
