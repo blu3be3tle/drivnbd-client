@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 
 const Banner = () => {
@@ -17,7 +18,9 @@ const Banner = () => {
                         <p className="mb-5">
                             Discover the latest trends and refresh your wardrobe with our stunning new arrivals.
                         </p>
-                        <button className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-900 hover:bg-gray-700">Shop Now</button>
+                        <Link to="/products">
+                            <button className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-900 hover:bg-gray-700">Shop Now</button>
+                        </Link>
                     </div>
                 </div>
             </div>
