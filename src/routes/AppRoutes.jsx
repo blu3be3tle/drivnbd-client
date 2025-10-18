@@ -11,6 +11,7 @@ import ProductDetail from '../pages/ProductDetail';
 import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../pages/Profile";
 import Dashboard from "../pages/Dashboard";
+import Cart from '../pages/Cart';
 
 
 const AppRoutes = () => {
@@ -36,6 +37,7 @@ const AppRoutes = () => {
             >
                 <Route index element={<Dashboard />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path='cart' element={<Cart />} />
             </Route>
         </Routes>
     );
