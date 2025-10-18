@@ -33,7 +33,7 @@ const FilterSection = ({
                         step="10"
                         value={priceRange[0]}
                         onChange={(e) => handlePriceChange(0, Number(e.target.value))}
-                        className="w-full text-gray-700"
+                        className="w-full range range-primary range-xs"
                     />
                 </div>
                 {/* Max Range  */}
@@ -44,7 +44,7 @@ const FilterSection = ({
                         max="1000"
                         value={priceRange[1]}
                         onChange={(e) => handlePriceChange(1, Number(e.target.value))}
-                        className="w-20 p-2 border rounded-md"
+                        className="w-20 p-2 border rounded-md text-gray-700"
                     />
                     <input
                         type="range"
@@ -53,7 +53,7 @@ const FilterSection = ({
                         step="10"
                         value={priceRange[1]}
                         onChange={(e) => handlePriceChange(1, Number(e.target.value))}
-                        className="w-full"
+                        className="w-full range range-primary range-xs"
                     />
                 </div>
 
@@ -91,7 +91,7 @@ const FilterSection = ({
                     type="text"
                     value={searchQuery}
                     onChange={(e) => handleSearchQuery(e.target.value)}
-                    placeholder="Search books..."
+                    placeholder="Search products..."
                     className="w-full p-2 border rounded-md text-gray-700"
                 />
             </div>
