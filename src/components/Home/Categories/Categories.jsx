@@ -18,12 +18,12 @@ const Categories = () => {
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
                         {categories.map(category => (
                             <Link to={category.href} key={category.name} className="flex justify-center">
-                                <div class="card bg-base-100 bg-opacity-90 image-full w-96 shadow-sm">
+                                <div className="card bg-base-100 bg-opacity-90 image-full w-96 shadow-sm">
                                     <figure>
                                         <img src={category.image} alt={category.name} />
                                     </figure>
-                                    <div class="card-body">
-                                        <div class="absolute inset-0 flex items-center text-center text-2xl font-bold">
+                                    <div className="card-body">
+                                        <div className="absolute inset-0 flex items-center text-center text-2xl font-bold">
                                             <p>{category.name}</p>
                                         </div>
                                     </div>
