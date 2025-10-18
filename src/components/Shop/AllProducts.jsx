@@ -7,7 +7,7 @@ import useFetchCategories from "../../hooks/useFetchCategories";
 
 const AllProducts = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [priceRange, setPriceRange] = useState([0, 1000]);
+    const [priceRange, setPriceRange] = useState([0, 10000]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState("");
@@ -33,7 +33,7 @@ const AllProducts = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8">Shop Our Products</h1>
+            <h1 className="text-3xl font-bold mb-8 text-gray-700">Shop Our Products</h1>
             <FilterSection
                 priceRange={priceRange}
                 handlePriceChange={handlePriceChange}
