@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import ProfileForm from "../components/Dashboard/Profile/ProfileForm";
 import { useEffect, useState } from "react";
-import ProfileButtons from "../components/Dashboard/Profile/ProfileButtons";
-import PasswordChangeForm from "../components/Dashboard/Profile/PasswordChangeForm";
+import ProfileButtons from "../components/Profile/ProfileButtons";
+import PasswordChangeForm from "../components/Profile/PasswordChangeForm";
 import useAuthContext from "../hooks/useAuthContext";
 import ErrorAlert from "../components/ErrorAlert";
 
@@ -50,7 +50,7 @@ const Profile = () => {
     return (
         <div className="card w-full max-w-2xl mx-auto bg-base-100 shadow-xl">
             <div className="card-body">
-                {errorMsg && <ErroAlert error={errorMsg} />}
+                {errorMsg && <ErrorAlert error={errorMsg} />}
                 <h2 className="card-title text-2xl mb-4">Profile Information</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
