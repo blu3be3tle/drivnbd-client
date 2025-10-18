@@ -1,10 +1,10 @@
 import { Link, NavLink } from 'react-router-dom';
-import useAuth from '../hooks/useAuth.js';
-import useCart from '../hooks/useCart.js';
+import useAuthContext from "../hooks/useAuthContext.js";
+import useCartContext from "../hooks/useCartContext.js";
 
 const Navbar = () => {
-    const { user, logout } = useAuth() ?? {};
-    const { cartItems = [] } = useCart() ?? {}; 
+    const { user, logoutUser } = useAuthContext() ?? {};
+    const { cartItems = [] } = useCartContext() ?? {};
 
     const cartItemCount = Array.isArray(cartItems)
         ? cartItems.reduce((count, item) => count + (Number(item?.quantity) || 0), 0)
@@ -56,7 +56,7 @@ const Navbar = () => {
                         {user ? (
                             <>
                                 <Link to="/profile" className="text-gray-500 hover:text-gray-700">Profile</Link>
-                                <button onClick={logout} className="text-gray-500 hover:text-gray-700">Logout</button>
+                                <button onClick={logoutUser} className="text-gray-500 hover:text-gray-700">Logout</button>
                             </>
                         ) : (
                             <Link
