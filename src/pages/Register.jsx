@@ -11,7 +11,7 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        watch,
+        // watch,
         formState: { errors },
     } = useForm();
 
@@ -168,7 +168,7 @@ const Register = () => {
                             )}
                         </div>
 
-                        <div className="form-control">
+                        {/* <div className="form-control">
                             <label className="label" htmlFor="confirmPassword">
                                 <span className="label-text">Confirm Password</span>
                             </label>
@@ -188,9 +188,9 @@ const Register = () => {
                                     {errors.confirm_password.message}
                                 </span>
                             )}
-                        </div>
+                        </div> */}
 
-                        <button type="submit" className="btn btn-primary w-full"></button>
+                        <button type="submit" className="btn btn-primary w-full">Register</button>
                     </form>
 
                     <div className="text-center mt-4">
