@@ -55,8 +55,8 @@ const Navbar = () => {
                         </Link>
                         {user ? (
                             <>
-                                <Link to="/profile" className="text-gray-500 hover:text-gray-700">Profile</Link>
-                                <button onClick={logoutUser} className="text-gray-500 hover:text-gray-700">Logout</button>
+                                <Link to="/Dashboard" className="text-gray-500 hover:text-gray-700">Dashboard</Link>
+                                <button onClick={logoutUser} className="btn btn-error text-gray-100 hover:text-gray-200">Logout</button>
                             </>
                         ) : (
                             <Link
