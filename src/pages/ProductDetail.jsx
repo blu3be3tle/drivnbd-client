@@ -27,7 +27,7 @@ const ProductDetail = () => {
         <div className="w-3/4 mx-auto px-4 py-8">
             <div className="mb-6">
                 <Link
-                    to="/shop"
+                    to="/products"
                     className="flex items-center text-sm text-base-content/70 hover:text-base-content transition-colors"
                 >
                     <FaArrowLeft className="mr-2 h-4 w-4" />
@@ -58,9 +58,9 @@ const ProductDetail = () => {
 
                     <div className="mt-2 mb-6">
                         <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold">${product.price}</span>
+                            <span className="text-3xl font-bold">Tk {product.price}</span>
                             <span className="text-sm text-base-content/70">
-                                (${product.price_with_tax} incl. tax)
+                                (Tk {product.price_with_tax} incl. tax)
                             </span>
                         </div>
                     </div>
