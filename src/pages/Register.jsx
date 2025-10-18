@@ -29,7 +29,7 @@ const Register = () => {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">
+        <div className="flex min-h-screen items-center justify-center px-4 py-12 bg-white">
             <div className="card w-full max-w-md bg-base-100 shadow-xl">
                 <div className="card-body">
                     {errorMsg && <ErrorAlert error={errorMsg} />}
