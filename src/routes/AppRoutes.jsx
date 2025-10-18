@@ -6,6 +6,11 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import PrivateRoute from './PrivateRoute';
 
+import DashboardLayout from "../layouts/DashboardLayout";
+import Profile from "../pages/Profile";
+import Dashboard from "../pages/Dashboard";
+
+
 const AppRoutes = () => {
     return (
         <Routes>
@@ -16,11 +21,18 @@ const AppRoutes = () => {
                 <Route path="/products" element={<Products />} />
             </Route>
 
-            <Route path="Dashboard" element={
-                <PrivateRoute>
-
-                </PrivateRoute>
-            } />
+            {/* Private Routes  */}
+            <Route
+                path="dashboard"
+                element={
+                    <PrivateRoute>
+                        <DashboardLayout />
+                    </PrivateRoute>
+                }
+            >
+                <Route index element={<Dashboard />} />
+                <Route path="profile" element={<Profile />} />
+            </Route>
         </Routes>
     );
 };
