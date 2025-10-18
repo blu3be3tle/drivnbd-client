@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
-import AddToCartButton from "../components/ProductDetails/AddToCartButton";
-import ProductImageGallery from "../components/ProductDetails/ProductImageGallery";
+import AddToCartButton from "../components/Products/AddToCartButton";
+import ProductImageGallery from "../components/Products/ProductImageGallery";
 import { FaArrowLeft } from "react-icons/fa";
 import { Suspense, useEffect, useState } from "react";
 import apiClient from "../services/api-client";
