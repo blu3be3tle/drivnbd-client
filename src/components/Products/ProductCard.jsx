@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
         <div className="group relative bg-white border rounded-lg p-4 shadow-sm hover:shadow-xl transition-shadow duration-300">
             <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
                 <img
-                    src={product.image || 'https://res.cloudinary.com/dd7xmhwer/image/upload/v1760380152/default_product_tyto4y.jpg'}
+                    src={product.images.length > 0 ? product.images[0].image : 'https://res.cloudinary.com/dd7xmhwer/image/upload/v1760380152/default_product_tyto4y.jpg'}
                     alt={product.name}
                     className="w-full h-full object-center object-cover group-hover:opacity-75 transition-opacity"
                 />
