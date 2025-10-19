@@ -36,12 +36,12 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
                     </div>
                     <div className="flex justify-between">
                         <span className="text-gray-500">Estimated Tax</span>
-                        <span>${tax.toFixed(2)}</span>
+                        <span>Tk {tax.toFixed(2)}</span>
                     </div>
                     <div className="border-t border-gray-200 pt-2 mt-2">
                         <div className="flex justify-between font-medium">
                             <span>Order Total</span>
-                            <span>${orderTotal.toFixed(2)}</span>
+                            <span>Tk {orderTotal.toFixed(2)}</span>
                         </div>
                     </div>
                 </div>
