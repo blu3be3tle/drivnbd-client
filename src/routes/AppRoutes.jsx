@@ -12,7 +12,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../pages/Profile";
 import Dashboard from "../pages/Dashboard";
 import Cart from '../pages/Cart';
-import Orders from '../pages/Order';
+import Orders from '../pages/Orders';
 
 
 const AppRoutes = () => {
