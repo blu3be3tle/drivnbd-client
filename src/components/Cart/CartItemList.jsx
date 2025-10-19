@@ -26,7 +26,7 @@ const CartItemList = ({ items, handleUpdateQuantity, handleRemoveItem }) => {
                         {items.map((item) => (
                             <tr key={item.id}>
                                 <td className="font-medium">{item.product.name} </td>
-                                <td className="text-right">${item.product.price}</td>
+                                <td className="text-right">Tk {item.product.price}</td>
                                 <td>
                                     <div className="flex items-center join">
                                         <button
