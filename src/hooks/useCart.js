@@ -9,13 +9,24 @@ const useCart = () => {
     const [loading, setLoading] = useState(false);
 
     const createOrGetCart = useCallback(async () => {
-        if (!user) return null; // No cart for unauthenticated users
+        if (!user) return null; // no cart for unauthenticated users
         setLoading(true);
         try {
             let response;
             if (cartId) {
-                response = await authApiClient.get(`/carts/${cartId}/`);
+                // GET by cartId or fallback to /carts/mine
+                try {
+                    response = await authApiClient.get(`/carts/${cartId}/`);
+                } catch (err) {
+                    // fallback if cartId is invalid or deleted
+                    response = await authApiClient.get(`/carts/mine/`);
+                    if (response?.data?.id) {
+                        localStorage.setItem("cartId", response.data.id);
+                        setCartId(response.data.id);
+                    }
+                }
             } else {
+                // POST to create a new cart
                 response = await authApiClient.post("/carts/");
                 localStorage.setItem("cartId", response.data.id);
                 setCartId(response.data.id);
@@ -23,7 +34,7 @@ const useCart = () => {
             setCart(response.data);
             return response.data;
         } catch (error) {
-            console.log(error);
+            console.log("Cart fetch/create error:", error);
         } finally {
             setLoading(false);
         }
@@ -39,10 +50,15 @@ const useCart = () => {
                     const newCart = await createOrGetCart();
                     id = newCart?.id;
                 }
-                const response = await authApiClient.post(`/carts/${id}/items/`, { product_id, quantity });
+                const response = await authApiClient.post(`/carts/${id}/items/`, {
+                    product_id,
+                    quantity,
+                });
+                // optionally refresh cart
+                await createOrGetCart();
                 return response.data;
             } catch (error) {
-                console.log("Error adding Items", error);
+                console.log("Error adding items:", error);
             } finally {
                 setLoading(false);
             }
@@ -54,12 +70,15 @@ const useCart = () => {
         async (itemId, quantity) => {
             if (!user) return;
             try {
-                await authApiClient.patch(`/carts/${cartId}/items/${itemId}/`, { quantity });
+                await authApiClient.patch(`/carts/${cartId}/items/${itemId}/`, {
+                    quantity,
+                });
+                await createOrGetCart();
             } catch (error) {
-                console.log("Error updating cart items", error);
+                console.log("Error updating cart items:", error);
             }
         },
-        [cartId, user]
+        [cartId, createOrGetCart, user]
     );
 
     const deleteCartItems = useCallback(
@@ -67,24 +86,38 @@ const useCart = () => {
             if (!user) return;
             try {
                 await authApiClient.delete(`/carts/${cartId}/items/${itemId}/`);
+                await createOrGetCart();
             } catch (error) {
-                console.log(error);
+                console.log("Error deleting cart items:", error);
             }
         },
-        [cartId, user]
+        [cartId, createOrGetCart, user]
     );
 
     useEffect(() => {
-        if (user) {
-            createOrGetCart();
-        } else {
+        if (!user) {
             setCart(null);
             setCartId(null);
             localStorage.removeItem("cartId");
+            return;
         }
-    }, [user, createOrGetCart]);
+        if (!loading && !cart) {
+            createOrGetCart().catch((err) =>
+                console.log("Failed to fetch/create cart:", err)
+            );
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
-    return { cart, loading, cartId, createOrGetCart, addCartItems, updateCartItemQuantity, deleteCartItems };
+    return {
+        cart,
+        loading,
+        cartId,
+        createOrGetCart,
+        addCartItems,
+        updateCartItemQuantity,
+        deleteCartItems,
+    };
 };
 
 export default useCart;
