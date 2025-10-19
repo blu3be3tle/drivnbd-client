@@ -13,14 +13,14 @@ import useAuthContext from "../../hooks/useAuthContext";
 const Sidebar = () => {
     const { user } = useAuthContext();
 
-    const customerMenus = [
+    const customerMenu = [
         { to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
         { to: "/dashboard/cart", icon: FiShoppingCart, label: "Cart" },
         { to: "/dashboard/orders", icon: FiShoppingCart, label: "Orders" },
         { to: "/reviews", icon: FiStar, label: "Reviews" },
     ];
 
-    const adminMenus = [
+    const adminMenu = [
         { to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
         { to: "/products", icon: FiPackage, label: "Products" },
         { to: "/dashboard/products/add", icon: FiPlusCircle, label: "Add Product" },
@@ -32,7 +32,7 @@ const Sidebar = () => {
         { to: "/users", icon: FiUsers, label: "Users" },
     ];
 
-    const menuItems = user.is_staff ? adminMenus : customerMenus;
+    const menuItems = user.is_staff ? adminMenu : customerMenu;
 
     return (
         <div className="drawer-side z-10">
