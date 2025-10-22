@@ -1,112 +1,90 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import apiClient from "../services/api-client";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
-
-  const getToken = () => {
+  const [authTokens, setAuthTokens] = useState(() => {
     const token = localStorage.getItem("authTokens");
     return token ? JSON.parse(token) : null;
+  });
+
+  const handleAPIError = (error, defaultMessage = "Something went wrong!") => {
+    const msg =
+      error.response?.data
+        ? Object.values(error.response.data).flat().join("\n")
+        : defaultMessage;
+    setErrorMsg(msg);
+    return { success: false, message: msg };
   };
 
-  const [authTokens, setAuthTokens] = useState(getToken());
+  const fetchUserProfile = useCallback(async () => {
+    try {
+      const res = await apiClient.get("/auth/users/me", {
+        headers: { Authorization: `JWT ${authTokens?.access}` },
+      });
+      setUser(res.data);
+    } catch (err) {
+      console.error("Error fetching user:", err);
+    }
+  }, [authTokens]);
 
   useEffect(() => {
     if (authTokens) fetchUserProfile();
-  }, [authTokens]);
+  }, [authTokens, fetchUserProfile]);
 
-  const handleAPIError = (
-    error,
-    defaultMessage = "Something Went Wrong! Try Again"
-  ) => {
-    console.log(error);
-
-    if (error.response && error.response.data) {
-      const errorMessage = Object.values(error.response.data).flat().join("\n");
-      setErrorMsg(errorMessage);
-      return { success: false, message: errorMessage };
-    }
-    setErrorMsg(defaultMessage);
-    return {
-      success: false,
-      message: defaultMessage,
-    };
-  };
-
-  // Fetch user Profile
-  const fetchUserProfile = async () => {
-    try {
-      const response = await apiClient.get("/auth/users/me", {
-        headers: { Authorization: `JWT ${authTokens?.access}` },
-      });
-      setUser(response.data);
-    } catch (error) {
-      console.log("Error Fetching user", error);
-    }
-  };
-
-  // Update User Profile
-  const updateUserProfile = async (data) => {
+  const loginUser = async (data) => {
     setErrorMsg("");
     try {
-      await apiClient.put("/auth/users/me/", data, {
-        headers: {
-          Authorization: `JWT ${authTokens?.access}`,
-        },
-      });
-    } catch (error) {
-      return handleAPIError(error);
-    }
-  };
-
-  // Password Change
-  const changePassword = async (data) => {
-    setErrorMsg("");
-    try {
-      await apiClient.post("/auth/users/set_password/", data, {
-        headers: {
-          Authorization: `JWT ${authTokens?.access}`,
-        },
-      });
-    } catch (error) {
-      return handleAPIError(error);
-    }
-  };
-
-  // Login User
-  const loginUser = async (userData) => {
-    setErrorMsg("");
-    try {
-      const response = await apiClient.post("/auth/jwt/create/", userData);
-      setAuthTokens(response.data);
-      localStorage.setItem("authTokens", JSON.stringify(response.data));
-
-      // After login set user
+      const res = await apiClient.post("/auth/jwt/create/", data);
+      setAuthTokens(res.data);
+      localStorage.setItem("authTokens", JSON.stringify(res.data));
       await fetchUserProfile();
       return { success: true };
-    } catch (error) {
-      setErrorMsg(error.response.data?.detail);
+    } catch (err) {
+      setErrorMsg(err.response?.data?.detail || "Login failed");
       return { success: false };
     }
   };
 
-  // Register User
-  const registerUser = async (userData) => {
+  const registerUser = async (data) => {
     setErrorMsg("");
     try {
-      await apiClient.post("/auth/users/", userData);
+      await apiClient.post("/auth/users/", data);
       return {
         success: true,
         message:
           "Registration successful. Check your email to activate your account.",
       };
-    } catch (error) {
-      return handleAPIError(error, "Registration Failed! Try Again");
+    } catch (err) {
+      return handleAPIError(err, "Registration failed!");
     }
   };
 
-  // Logout User
+  const updateUserProfile = async (data) => {
+    setErrorMsg("");
+    try {
+      await apiClient.put("/auth/users/me/", data, {
+        headers: { Authorization: `JWT ${authTokens?.access}` },
+      });
+      return { success: true };
+    } catch (err) {
+      return handleAPIError(err);
+    }
+  };
+
+  const changePassword = async (data) => {
+    setErrorMsg("");
+    try {
+      await apiClient.post("/auth/users/set_password/", data, {
+        headers: { Authorization: `JWT ${authTokens?.access}` },
+      });
+      return { success: true };
+    } catch (err) {
+      return handleAPIError(err);
+    }
+  };
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -117,6 +95,7 @@ const useAuth = () => {
   return {
     user,
     errorMsg,
+    authTokens,
     loginUser,
     registerUser,
     logoutUser,
