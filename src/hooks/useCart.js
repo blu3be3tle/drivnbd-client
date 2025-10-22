@@ -23,7 +23,7 @@ const useCart = () => {
                     if (response?.data?.id) {
                         localStorage.setItem("cartId", response.data.id);
                         setCartId(response.data.id);
-                    }
+                    } console.log(err)
                 }
             } else {
                 // POST to create a new cart
