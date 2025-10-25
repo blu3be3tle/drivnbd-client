@@ -43,7 +43,7 @@ npm install
 npm start
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:5473](http://localhost:5473) in your browser.
 
 ## Contributing
 
